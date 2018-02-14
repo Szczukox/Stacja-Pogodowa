@@ -7,7 +7,11 @@ import javafx.scene.control.Label;
 
 import java.awt.*;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Controller implements Initializable{
     @FXML
@@ -27,9 +31,6 @@ public class Controller implements Initializable{
     int[] lista_temperatura;
     int[] lista_cisnienie;
 
-
-
-
     int deszczyk=0;
     int oswietlenie=10;
     int wilgotnosc=40;
@@ -37,10 +38,7 @@ public class Controller implements Initializable{
     int cisnienie=1000;
 
     public Controller() {
-
     }
-
-
 
     public void czy_pada(){
         if(deszczyk==1){
@@ -49,8 +47,6 @@ public class Controller implements Initializable{
         else
             deszcz.setText("Pada");
     }
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb){

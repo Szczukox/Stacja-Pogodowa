@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BubbleChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="center" hgap="10" prefHeight="800.0" prefWidth="1000.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <Pane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #c6e2ff;">
+         <children>
+            <Label layoutX="176.0" layoutY="60.0" text="Temperatura" />
+            <Label layoutX="287.0" layoutY="60.0" text="Wilgotność" />
+            <Label layoutX="392.0" layoutY="60.0" text="Oświetlenie" />
+            <Label layoutX="100.0" layoutY="60.0" text="Ciśnienie">
+               <font>
+                  <Font name="System Italic" size="15.0" />
+               </font></Label>
+            <Label fx:id="deszcz" layoutX="483.0" layoutY="100.0" text="Label" />
+            <Label fx:id="temp" layoutX="201.0" layoutY="100.0" text="Label" />
+            <Label fx:id="wil" layoutX="307.0" layoutY="100.0" text="Label" />
+            <Label fx:id="osw" layoutX="413.0" layoutY="100.0" text="Label" />
+            <Label fx:id="cis" layoutX="112.0" layoutY="100.0" text="Label" />
+            <LineChart fx:id="oswietlen" layoutX="528.0" layoutY="481.0" prefHeight="250.0" prefWidth="300.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <LineChart fx:id="cisnien" layoutX="528.0" layoutY="223.0" prefHeight="250.0" prefWidth="300.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <LineChart fx:id="temperat" layoutX="129.0" layoutY="223.0" prefHeight="250.0" prefWidth="300.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <LineChart fx:id="wilgotnos" layoutX="129.0" layoutY="481.0" prefHeight="250.0" prefWidth="300.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <BubbleChart fx:id="opad" layoutX="528.0" layoutY="41.0" prefHeight="179.0" prefWidth="280.0">
+              <xAxis>
+                <NumberAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BubbleChart>
+            <Label layoutX="656.0" layoutY="20.0" text="Opady" />
+            <Label layoutX="237.0" layoutY="200.0" text="Temperatura" />
+            <Label layoutX="648.0" layoutY="210.0" text="Cisnienie" />
+            <Label layoutX="250.0" layoutY="463.0" text="Wilgotność" />
+            <Label layoutX="661.0" layoutY="463.0" text="Oświetlenie" />
+         </children>
+         <effect>
+            <InnerShadow />
+         </effect></Pane>
+    </children>
+</GridPane>
