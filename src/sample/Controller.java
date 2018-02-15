@@ -10,11 +10,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import pomiary.Pomiary;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -35,6 +39,8 @@ public class Controller implements Initializable{
     Label temp;
     @FXML
     Label cis;
+    @FXML
+    Label czasLabel;
 
     @FXML
     BubbleChart opadyBubbleChart;
@@ -107,9 +113,8 @@ public class Controller implements Initializable{
         opadyXAxis = new NumberAxis(0, 30, 5);
         final CategoryAxis opadyYAxis = new CategoryAxis();
         opadyXAxis.setLabel("Czas [s]");
-        final LineChart<Number,String> opadyLineChart = new LineChart<Number,String>(opadyXAxis,opadyYAxis);
+        final ScatterChart<Number,String> opadyLineChart = new ScatterChart<Number,String>(opadyXAxis,opadyYAxis);
         opadyLineChart.setTitle("Opady");
-        opadyLineChart.setCreateSymbols(false);
         opadyLineChart.setAnimated(false);
         opadySeries = new XYChart.Series();
         for (int i = 0; i < lista_opady.length; i++) {
@@ -206,9 +211,17 @@ public class Controller implements Initializable{
         wilgotnoscLineChart.setLayoutX(this.wilgotnoscLineChart.getLayoutX());
         wilgotnoscLineChart.setLayoutY(this.wilgotnoscLineChart.getLayoutY());
         this.wilgotnoscLineChart.setVisible(false);
+
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Date date = new Date();
+        czasLabel.setText(dateFormat.format(date));
     }
 
     private void aktualizuj() {
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Date date = new Date();
+        czasLabel.setText(dateFormat.format(date));
+
         String opady = null;
         int czyPada = getNextValue("opady");
         if (czyPada == 1) {

@@ -31,3 +31,7 @@
 .opady {
     -fx-image: url("opady.png");
 }
+
+.czas {
+    -fx-image: url("czas.gif");
+}
