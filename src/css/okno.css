@@ -11,3 +11,23 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover, auto;
 }
+
+.cisnienie {
+    -fx-image: url("cisnienie.gif");
+}
+
+.temperatura {
+    -fx-image: url("temperatura.gif");
+}
+
+.wilgotnosc {
+    -fx-image: url("wilgotnosc.gif");
+}
+
+.oswietlenie {
+    -fx-image: url("oswietlenie.gif");
+}
+
+.opady {
+    -fx-image: url("opady.png");
+}

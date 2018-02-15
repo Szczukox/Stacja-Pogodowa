@@ -15,6 +15,7 @@ import pomiary.Pomiary;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,6 +47,9 @@ public class Controller implements Initializable{
     @FXML
     LineChart cisnienieLineChart;
 
+    private final int MAX_DATA_POINTS = 30;
+    private int sequence = 4;
+
     private Connection conn;
     private Timeline timeline;
 
@@ -54,6 +58,18 @@ public class Controller implements Initializable{
     private int[] lista_wilgotnosc;
     private float[] lista_temperatura;
     private int[] lista_cisnienie;
+
+    private XYChart.Series opadySeries;
+    private XYChart.Series oswietlenieSeries;
+    private XYChart.Series wilgotnoscSeries;
+    private XYChart.Series temperaturaSeries;
+    private XYChart.Series cisnienieSeries;
+
+    private NumberAxis opadyXAxis;
+    private NumberAxis oswietlenieXAxis;
+    private NumberAxis wilgotnoscXAxis;
+    private NumberAxis temperaturaXAxis;
+    private NumberAxis cisnienieXAxis;
 
     public Controller() {
         timeline = new Timeline();
@@ -86,13 +102,16 @@ public class Controller implements Initializable{
         temp.setText(String.valueOf(lista_temperatura[lista_temperatura.length - 1]) + " °C");
         wil.setText(String.valueOf(lista_wilgotnosc[lista_wilgotnosc.length - 1]) + " %");
 
-        final NumberAxis opadyXAxis = new NumberAxis(0, 30, 5);
+
+
+        opadyXAxis = new NumberAxis(0, 30, 5);
         final CategoryAxis opadyYAxis = new CategoryAxis();
         opadyXAxis.setLabel("Czas [s]");
         final LineChart<Number,String> opadyLineChart = new LineChart<Number,String>(opadyXAxis,opadyYAxis);
         opadyLineChart.setTitle("Opady");
         opadyLineChart.setCreateSymbols(false);
-        XYChart.Series opadySeries = new XYChart.Series();
+        opadyLineChart.setAnimated(false);
+        opadySeries = new XYChart.Series();
         for (int i = 0; i < lista_opady.length; i++) {
             opadySeries.getData().add(new XYChart.Data(i, String.valueOf(lista_opady[i])));
         }
@@ -104,13 +123,16 @@ public class Controller implements Initializable{
         opadyLineChart.setLayoutY(this.opadyBubbleChart.getLayoutY());
         this.opadyBubbleChart.setVisible(false);
 
-        final NumberAxis cisnienieXAxis = new NumberAxis(0, 30, 5);
+
+
+        cisnienieXAxis = new NumberAxis(0, 30, 5);
         final NumberAxis cisnienieYAxis = new NumberAxis();
         cisnienieXAxis.setLabel("Czas [s]");
-        final LineChart<Number,Number> cisnienieLineChart = new LineChart<Number,Number>(cisnienieXAxis,cisnienieYAxis);
+        final LineChart<Number,Number> cisnienieLineChart = new LineChart<Number, Number>(cisnienieXAxis,cisnienieYAxis);
         cisnienieLineChart.setTitle("Ciśnienie");
         cisnienieLineChart.setCreateSymbols(false);
-        XYChart.Series cisnienieSeries = new XYChart.Series();
+        cisnienieLineChart.setAnimated(false);
+        cisnienieSeries = new XYChart.Series();
         for (int i = 0; i < lista_cisnienie.length; i++) {
             cisnienieSeries.getData().add(new XYChart.Data(i, lista_cisnienie[i]));
         }
@@ -122,13 +144,16 @@ public class Controller implements Initializable{
         cisnienieLineChart.setLayoutY(this.cisnienieLineChart.getLayoutY());
         this.cisnienieLineChart.setVisible(false);
 
-        final NumberAxis oswietlenieXAxis = new NumberAxis(0, 30, 5);
+
+
+        oswietlenieXAxis = new NumberAxis(0, 30, 5);
         final NumberAxis oswietlenieYAxis = new NumberAxis();
         oswietlenieXAxis.setLabel("Czas [s]");
         final LineChart<Number,Number> oswietlenieLineChart = new LineChart<Number,Number>(oswietlenieXAxis,oswietlenieYAxis);
         oswietlenieLineChart.setTitle("Oświetlenie");
         oswietlenieLineChart.setCreateSymbols(false);
-        XYChart.Series oswietlenieSeries = new XYChart.Series();
+        oswietlenieLineChart.setAnimated(false);
+        oswietlenieSeries = new XYChart.Series();
         for (int i = 0; i < lista_oswietlenie.length; i++) {
             oswietlenieSeries.getData().add(new XYChart.Data(i, lista_oswietlenie[i]));
         }
@@ -140,13 +165,16 @@ public class Controller implements Initializable{
         oswietlenieLineChart.setLayoutY(this.oswietlenieLineChart.getLayoutY());
         this.oswietlenieLineChart.setVisible(false);
 
-        final NumberAxis temperaturaXAxis = new NumberAxis(0, 30, 5);
+
+
+        temperaturaXAxis = new NumberAxis(0, 30, 5);
         final NumberAxis temperaturaYAxis = new NumberAxis();
         temperaturaXAxis.setLabel("Czas [s]");
         final LineChart<Number,Number> temperaturaLineChart = new LineChart<Number,Number>(temperaturaXAxis,temperaturaYAxis);
         temperaturaLineChart.setTitle("Temperatura");
         temperaturaLineChart.setCreateSymbols(false);
-        XYChart.Series temperaturaSeries = new XYChart.Series();
+        temperaturaLineChart.setAnimated(false);
+        temperaturaSeries = new XYChart.Series();
         for (int i = 0; i < lista_temperatura.length; i++) {
             temperaturaSeries.getData().add(new XYChart.Data(i, lista_temperatura[i]));
         }
@@ -158,13 +186,16 @@ public class Controller implements Initializable{
         temperaturaLineChart.setLayoutY(this.temperaturaLineChart.getLayoutY());
         this.temperaturaLineChart.setVisible(false);
 
-        final NumberAxis wilgotnoscXAxis = new NumberAxis(0, 30, 5);
+
+
+        wilgotnoscXAxis = new NumberAxis(0, 30, 5);
         final NumberAxis wilgotnoscYAxis = new NumberAxis();
         wilgotnoscXAxis.setLabel("Czas [s]");
         final LineChart<Number,Number> wilgotnoscLineChart = new LineChart<Number,Number>(wilgotnoscXAxis,wilgotnoscYAxis);
         wilgotnoscLineChart.setTitle("Wilgotność");
         wilgotnoscLineChart.setCreateSymbols(false);
-        XYChart.Series wilgotnoscSeries = new XYChart.Series();
+        wilgotnoscLineChart.setAnimated(false);
+        wilgotnoscSeries = new XYChart.Series();
         for (int i = 0; i < lista_wilgotnosc.length; i++) {
             wilgotnoscSeries.getData().add(new XYChart.Data(i, lista_wilgotnosc[i]));
         }
@@ -177,12 +208,74 @@ public class Controller implements Initializable{
         this.wilgotnoscLineChart.setVisible(false);
     }
 
-    public void aktualizuj() {
+    private void aktualizuj() {
+        String opady = null;
+        int czyPada = getNextValue("opady");
+        if (czyPada == 1) {
+            opady = "Nie pada";
+        } else if (czyPada == 0) {
+            opady = "Pada";
+        }
+        deszcz.setText(opady);
+        int cisnienie = getNextValue("cisnienie");
+        cis.setText(String.valueOf(cisnienie) + " hPa");
+        int oswietlenie = getNextValue("oswietlenie");
+        osw.setText(String.valueOf(oswietlenie) + " lx");
+        int temperatura = getNextValue("temperatura");
+        temp.setText(String.valueOf(temperatura) + " °C");
+        int wilgotnosc = getNextValue("wilgotnosc");
+        wil.setText(String.valueOf(wilgotnosc) + " %");
+        opadySeries.getData().add(new XYChart.Data<Number, String>(++sequence, opady));
+        cisnienieSeries.getData().add(new XYChart.Data<Number, Number>(sequence, cisnienie));
+        oswietlenieSeries.getData().add(new XYChart.Data<Number, Number>(sequence, oswietlenie));
+        temperaturaSeries.getData().add(new XYChart.Data<Number, Number>(sequence, temperatura));
+        wilgotnoscSeries.getData().add(new XYChart.Data<Number, Number>(sequence, wilgotnosc));
 
+        if (sequence > MAX_DATA_POINTS - 1) {
+            opadySeries.getData().remove(0);
+            opadyXAxis.setLowerBound(cisnienieXAxis.getLowerBound() + 1);
+            opadyXAxis.setUpperBound(cisnienieXAxis.getUpperBound() + 1);
+
+            cisnienieSeries.getData().remove(0);
+            cisnienieXAxis.setLowerBound(cisnienieXAxis.getLowerBound() + 1);
+            cisnienieXAxis.setUpperBound(cisnienieXAxis.getUpperBound() + 1);
+
+            oswietlenieSeries.getData().remove(0);
+            oswietlenieXAxis.setLowerBound(oswietlenieXAxis.getLowerBound() + 1);
+            oswietlenieXAxis.setUpperBound(oswietlenieXAxis.getUpperBound() + 1);
+
+            temperaturaSeries.getData().remove(0);
+            temperaturaXAxis.setLowerBound(temperaturaXAxis.getLowerBound() + 1);
+            temperaturaXAxis.setUpperBound(temperaturaXAxis.getUpperBound() + 1);
+
+            wilgotnoscSeries.getData().remove(0);
+            wilgotnoscXAxis.setLowerBound(wilgotnoscXAxis.getLowerBound() + 1);
+            wilgotnoscXAxis.setUpperBound(wilgotnoscXAxis.getUpperBound() + 1);
+        }
+    }
+
+    private int getNextValue(String pomiar){
+        Random rand = new Random();
+        if (pomiar == "opady") {
+            return rand.nextInt(2);
+        } else if (pomiar == "cisnienie") {
+            return rand.nextInt(200) + 900;
+        } else if (pomiar == "oswietlenie") {
+            return rand.nextInt(500) + 500;
+        } else if (pomiar == "temperatura") {
+            return rand.nextInt(35) - 10;
+        } else if (pomiar == "wilgotnosc") {
+            return rand.nextInt(90) + 5;
+        }
+        return 0;
     }
 
     public Connection getConn() {
         return this.conn;
+    }
+
+    public Timeline getTimeline() {
+        return this.timeline;
     }
 
     public void setLista_opady(String[] lista_opady) {

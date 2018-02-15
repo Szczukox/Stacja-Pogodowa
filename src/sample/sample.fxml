@@ -6,6 +6,7 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
@@ -23,28 +24,28 @@
     <children>
         <Pane id="mainPane" fx:id="mainPane" prefHeight="800.0" prefWidth="1000.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="27.0" layoutY="31.0" opacity="0.2" stroke="WHITE" strokeType="INSIDE" width="452.0" />
-            <Label layoutX="114.0" layoutY="100.0" text="Temperatura" />
-            <Label layoutX="225.0" layoutY="100.0" text="Wilgotność" />
-            <Label layoutX="330.0" layoutY="100.0" text="Oświetlenie" />
-            <Label layoutX="38.0" layoutY="100.0" text="Ciśnienie" />
-            <Label fx:id="deszcz" layoutX="421.0" layoutY="140.0" text="Label">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="27.0" layoutY="31.0" opacity="0.2" stroke="WHITE" strokeType="INSIDE" width="536.0" />
+            <Label layoutX="143.0" layoutY="42.0" text="Temperatura" />
+            <Label layoutX="258.0" layoutY="42.0" text="Wilgotność" />
+            <Label layoutX="364.0" layoutY="42.0" text="Oświetlenie" />
+            <Label layoutX="61.0" layoutY="42.0" text="Ciśnienie" />
+            <Label fx:id="deszcz" alignment="CENTER" layoutX="457.0" layoutY="140.0" prefHeight="21.0" prefWidth="85.0" text="Label" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label fx:id="temp" layoutX="139.0" layoutY="140.0" text="Label">
+            <Label fx:id="temp" alignment="CENTER" layoutX="142.0" layoutY="140.0" prefHeight="21.0" prefWidth="85.0" text="Label" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label fx:id="wil" layoutX="245.0" layoutY="140.0" text="Label">
+            <Label fx:id="wil" alignment="CENTER" layoutX="259.0" layoutY="140.0" prefHeight="21.0" prefWidth="75.0" text="Label" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label fx:id="osw" layoutX="351.0" layoutY="140.0" text="Label">
+            <Label fx:id="osw" alignment="CENTER" layoutX="363.0" layoutY="140.0" prefHeight="21.0" prefWidth="77.0" text="Label" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label fx:id="cis" layoutX="50.0" layoutY="140.0" text="Label">
+            <Label fx:id="cis" alignment="CENTER" layoutX="41.0" layoutY="140.0" prefHeight="21.0" prefWidth="93.0" text="Label" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
@@ -93,6 +94,12 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </LineChart>
+            <Label layoutX="478.0" layoutY="42.0" text="Opady" />
+            <ImageView fitHeight="67.0" fitWidth="68.0" layoutX="54.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" styleClass="cisnienie" />
+            <ImageView fitHeight="67.0" fitWidth="68.0" layoutX="151.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" styleClass="temperatura" />
+            <ImageView fitHeight="67.0" fitWidth="85.0" layoutX="253.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" styleClass="wilgotnosc" />
+            <ImageView fitHeight="73.0" fitWidth="85.0" layoutX="359.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" styleClass="oswietlenie" />
+            <ImageView fitHeight="73.0" fitWidth="85.0" layoutX="463.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" styleClass="opady" />
          </children>
          <effect>
             <InnerShadow />
