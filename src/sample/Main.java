@@ -1,6 +1,5 @@
 package sample;
 
-import dataBaseConnection.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,15 +17,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        JDBC jdbc = null;
-        try {
-            jdbc = new JDBC();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        conn = jdbc.getConn();
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Stacja pogodowa");
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
+        Parent root = fxmlLoader.load();
+        Controller controller = fxmlLoader.getController();
+        conn = controller.getConn();
+        primaryStage.setTitle("Pomiary ze stacji pogodowej");
         primaryStage.setScene(new Scene(root, 1000, 800));
         primaryStage.show();
     }
