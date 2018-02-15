@@ -23,6 +23,8 @@ public class Main extends Application {
         conn = controller.getConn();
         primaryStage.setTitle("Pomiary ze stacji pogodowej");
         primaryStage.setScene(new Scene(root, 1000, 800));
+        primaryStage.setMinWidth(1050);
+        primaryStage.setMinHeight(850);
         primaryStage.show();
     }
 
@@ -35,7 +37,6 @@ public class Main extends Application {
         }
         System.out.println("Odłączono od bazy danych");
     }
-
 
     public static void main(String[] args) {
         launch(args);

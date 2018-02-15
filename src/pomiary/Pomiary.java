@@ -35,13 +35,17 @@ public class Pomiary {
         }
     }
 
-    public int[] getPomiaryDeszczu() {
-        int[] pomiaryDeszczu = new int[liczbaWierszy];
+    public String[] getPomiaryDeszczu() {
+        String[] pomiaryDeszczu = new String[liczbaWierszy];
         int i = 0;
         try {
             dane.beforeFirst();
             while (dane.next()) {
-                pomiaryDeszczu[i] = dane.getInt("OPADY");
+                if (dane.getInt("OPADY") == 0) {
+                    pomiaryDeszczu[i] = "Pada";
+                } else if (dane.getInt("OPADY") == 1) {
+                    pomiaryDeszczu[i] = "Nie pada";
+                }
                 i++;
             }
         } catch (SQLException e) {

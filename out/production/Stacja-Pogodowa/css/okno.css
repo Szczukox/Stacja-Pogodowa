@@ -1,0 +1,13 @@
+.slonecznie {
+    -fx-background-image: url("slonecznie2.jpg");
+    -fx-background-position: left top, center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover, auto;
+}
+
+.burza {
+    -fx-background-image: url("burza.jpg");
+    -fx-background-position: left top, center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover, auto;
+}

@@ -10,8 +10,10 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" prefHeight="800.0" prefWidth="1000.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane fx:id="gridPane" alignment="center" hgap="10" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="slonecznie" stylesheets="@../css/okno.css" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -19,18 +21,35 @@
         <RowConstraints />
     </rowConstraints>
     <children>
-        <Pane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #c6e2ff;">
+        <Pane id="mainPane" fx:id="mainPane" prefHeight="800.0" prefWidth="1000.0">
          <children>
-            <Label layoutX="176.0" layoutY="60.0" text="Temperatura" />
-            <Label layoutX="287.0" layoutY="60.0" text="Wilgotność" />
-            <Label layoutX="392.0" layoutY="60.0" text="Oświetlenie" />
-            <Label layoutX="100.0" layoutY="60.0" text="Ciśnienie" />
-            <Label fx:id="deszcz" layoutX="483.0" layoutY="100.0" text="Label" />
-            <Label fx:id="temp" layoutX="201.0" layoutY="100.0" text="Label" />
-            <Label fx:id="wil" layoutX="307.0" layoutY="100.0" text="Label" />
-            <Label fx:id="osw" layoutX="413.0" layoutY="100.0" text="Label" />
-            <Label fx:id="cis" layoutX="112.0" layoutY="100.0" text="Label" />
-            <LineChart id="oswietlenieLineChart" fx:id="oswietlenieLineChart" layoutX="541.0" layoutY="481.0" legendVisible="false" prefHeight="250.0" prefWidth="300.0" title="Oświetlenie">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="27.0" layoutY="31.0" opacity="0.2" stroke="WHITE" strokeType="INSIDE" width="452.0" />
+            <Label layoutX="114.0" layoutY="100.0" text="Temperatura" />
+            <Label layoutX="225.0" layoutY="100.0" text="Wilgotność" />
+            <Label layoutX="330.0" layoutY="100.0" text="Oświetlenie" />
+            <Label layoutX="38.0" layoutY="100.0" text="Ciśnienie" />
+            <Label fx:id="deszcz" layoutX="421.0" layoutY="140.0" text="Label">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Label>
+            <Label fx:id="temp" layoutX="139.0" layoutY="140.0" text="Label">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Label>
+            <Label fx:id="wil" layoutX="245.0" layoutY="140.0" text="Label">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Label>
+            <Label fx:id="osw" layoutX="351.0" layoutY="140.0" text="Label">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Label>
+            <Label fx:id="cis" layoutX="50.0" layoutY="140.0" text="Label">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="250.0" layoutX="86.0" layoutY="240.0" opacity="0.2" stroke="WHITE" strokeType="INSIDE" width="321.0" />
+            <LineChart fx:id="temperaturaLineChart" layoutX="91.0" layoutY="240.0" prefHeight="250.0" prefWidth="300.0" title="Temperatura">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -38,7 +57,8 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </LineChart>
-            <LineChart fx:id="cisnienieLineChart" layoutX="528.0" layoutY="223.0" legendVisible="false" prefHeight="250.0" prefWidth="300.0" title="Ciśnienie">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="250.0" layoutX="577.0" layoutY="237.0" opacity="0.2" stroke="WHITE" strokeType="INSIDE" width="321.0" />
+            <LineChart id="cisnienieLineChart" fx:id="cisnienieLineChart" layoutX="572.0" layoutY="240.0" legendVisible="false" prefHeight="250.0" prefWidth="300.0" title="Ciśnienie">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -46,7 +66,8 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </LineChart>
-            <LineChart fx:id="temperaturaLineChart" layoutX="129.0" layoutY="223.0" legendVisible="false" prefHeight="250.0" prefWidth="300.0" title="Temperatura">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="256.0" layoutX="84.0" layoutY="502.0" opacity="0.2" stroke="WHITE" strokeType="INSIDE" width="321.0" />
+            <LineChart fx:id="wilgotnoscLineChart" layoutX="78.0" layoutY="500.0" prefHeight="250.0" prefWidth="300.0" title="Wilgotność">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -54,15 +75,8 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </LineChart>
-            <LineChart fx:id="wilgotnoscLineChart" layoutX="129.0" layoutY="481.0" legendVisible="false" prefHeight="250.0" prefWidth="300.0" title="Wilgotność">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </LineChart>
-            <BubbleChart fx:id="opadyBubbleChart" layoutX="528.0" layoutY="41.0" legendVisible="false" prefHeight="179.0" prefWidth="300.0" title="Opady">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="189.0" layoutX="579.0" layoutY="36.0" opacity="0.2" stroke="WHITE" strokeType="INSIDE" width="321.0" />
+            <BubbleChart fx:id="opadyBubbleChart" layoutX="575.0" layoutY="31.0" prefHeight="200.0" prefWidth="300.0" title="Opady">
               <xAxis>
                 <NumberAxis side="BOTTOM" />
               </xAxis>
@@ -70,6 +84,15 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </BubbleChart>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="256.0" layoutX="576.0" layoutY="502.0" opacity="0.2" stroke="WHITE" strokeType="INSIDE" width="321.0" />
+            <LineChart id="oswietlenieLineChart" fx:id="oswietlenieLineChart" layoutX="572.0" layoutY="505.0" legendVisible="false" prefHeight="250.0" prefWidth="300.0" title="Oświetlenie">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
          </children>
          <effect>
             <InnerShadow />
